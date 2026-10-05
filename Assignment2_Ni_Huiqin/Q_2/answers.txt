@@ -1,0 +1,57 @@
+Homework 2 - Question 2
+Comparison of Random Walk and Random Waypoint Mobility
+
+Simulation settings:
+Number of nodes: 100
+Simulation duration: 400 seconds
+Region: 80 m x 80 m
+Random number seed: 123456789
+
+Part 1: Random Walk and Random Waypoint Comparison
+
+For speeds uniformly distributed between 4.0 and 6.0 m/s, the
+calculated average distances from the center point (40, 40) were:
+
+Random Walk:
+Average distance from center = 30.1803 m
+
+Random Waypoint with a 2-second pause:
+Average distance from center = 24.7399 m
+
+The Random Walk results show that the nodes are distributed relatively
+uniformly throughout the 80 m x 80 m region. In this model, each node
+changes its movement direction every 2 seconds, and the movement process
+does not repeatedly choose destinations that favor paths through the
+center. Therefore, the final node locations remain broadly distributed
+over the square.
+
+The Random Waypoint results show a greater concentration of nodes near
+the center. Although the waypoints are selected uniformly throughout
+the region, paths connecting pairs of random waypoints pass through the
+central portion of the square more frequently than through its edges
+and corners. This creates the well-known center-concentration effect of
+the Random Waypoint model. Consequently, its average distance from the
+center, 24.7399 m, is smaller than the Random Walk result of 30.1803 m.
+The short 2-second pause is not long enough to eliminate this spatial
+bias.
+
+Part 2: Random Waypoint with Higher Speed and Longer Pause
+
+For speeds uniformly distributed between 20.0 and 22.0 m/s and a
+40-second pause time, the calculated result was:
+
+Random Waypoint with a 40-second pause:
+Average distance from center = 29.2550 m
+
+This distribution is more spread out than the Random Waypoint result
+from Part 1. At the higher speed, nodes require relatively little time
+to travel between waypoints. They then remain stationary for 40 seconds
+at waypoints that are selected uniformly over the square. Therefore,
+the nodes spend most of the simulation time paused at uniformly selected
+locations instead of moving along paths that frequently cross the center.
+
+As a result, the average distance increased from 24.7399 m to 29.2550 m
+and became closer to the Random Walk value of 30.1803 m. The remaining
+difference can be attributed to the finite number of nodes, the particular
+random realization, and the time that some nodes still spend traveling
+between waypoints.

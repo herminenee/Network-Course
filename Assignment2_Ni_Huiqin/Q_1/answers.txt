@@ -1,0 +1,60 @@
+Question 1: End-to-End Delay Analysis
+
+The simulation was run with seed 123456789, 10 packets, and 4 Wi-Fi STA nodes in each Wi-Fi network.
+
+The measured request-response delays were:
+
+Packet 1: 26.60 ms  
+Packet 2: 8.03 ms  
+Packet 3: 8.03 ms  
+Packet 4: 8.00 ms  
+Packet 5: 8.03 ms  
+Packet 6: 8.03 ms  
+Packet 7: 8.03 ms  
+Packet 8: 8.03 ms  
+Packet 9: 8.00 ms  
+Packet 10: 8.00 ms  
+
+The average delay for packets 2 through 10 was approximately 8.02 ms.
+
+Comparison with Lab Session Question 2
+
+In the original topology from Lab Session Question 2, the delays for packets 2 through 10 were approximately 7.56–7.60 ms. In the modified topology containing two point-to-point links, the corresponding delays were approximately 14.90–14.93 ms.
+
+Therefore, the delay in the two-Wi-Fi-network topology, approximately 8.02 ms, is slightly higher than the original Lab Question 2 topology but substantially lower than the modified topology.
+
+The original Lab Question 2 topology contains one 5 Mbps point-to-point link. Ignoring the relatively small CSMA delay, the approximate round-trip delay is:
+
+Propagation delay = 2 × 2 ms = 4 ms
+
+Transmission delay = 2 × (1024 bytes × 8 bits/byte ÷ 5 Mbps)
+                   = 3.28 ms
+
+Estimated total delay = 4 ms + 3.28 ms
+                      = 7.28 ms
+
+This estimate is close to the measured result of approximately 7.56–7.60 ms.
+
+The modified Lab Question 2 topology contains two 5 Mbps point-to-point links. Therefore, both propagation and transmission delays approximately double:
+
+Propagation delay = 4 × 2 ms = 8 ms
+
+Transmission delay = 4 × (1024 bytes × 8 bits/byte ÷ 5 Mbps)
+                   = 6.55 ms
+
+Estimated total delay = 8 ms + 6.55 ms
+                      = 14.55 ms
+
+This estimate is close to the measured result of approximately 14.90–14.93 ms.
+
+Explanation of the Wi-Fi Result
+
+The homework topology contains two Wi-Fi networks connected by one point-to-point link. Thus, the packet crosses the point-to-point link once in each direction, rather than crossing two separate point-to-point links as in the modified Lab Question 2 topology. This is why its delay is much closer to the original Lab topology.
+
+Unlike point-to-point and CSMA channels, a Wi-Fi channel does not have one simple fixed data-rate parameter. Wi-Fi transmission rates are determined by the Wi-Fi physical and MAC layers. The selected rate depends on the configured Wi-Fi standard, modulation and coding mode, rate-control algorithm, signal conditions, and communication overhead.
+
+The two Wi-Fi networks use separate physical channels. Therefore, transmissions in one Wi-Fi network do not interfere with transmissions in the other network. The Wi-Fi links can also operate at rates higher than the fixed 5 Mbps point-to-point links used in the lab topology. As a result, replacing the second 5 Mbps point-to-point link with Wi-Fi communication produces a delay of approximately 8.02 ms instead of approximately 14.92 ms.
+
+First-Packet Delay
+
+The first packet has a significantly higher delay of 26.60 ms. This is mainly caused by initialization operations such as ARP address resolution. Before the first IP packet can be delivered, nodes may need to determine the MAC address associated with the next-hop IP address. The request waits while this information is obtained. For later packets, the address information is already stored in the ARP cache, so packets 2 through 10 have much lower and nearly constant delays.

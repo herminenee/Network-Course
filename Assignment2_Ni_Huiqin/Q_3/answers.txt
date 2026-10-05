@@ -1,0 +1,87 @@
+Homework 2 - Question 3
+Analysis of the Cell-Based Mobility Model
+
+Let
+
+q = (1 - p) / 6
+
+be the probability of moving from the current cell to any one specific
+neighboring cell during one time step.
+
+The node starts in cell i at time t. To be in cell i again at time t+3,
+we must list every possible type of three-step path that begins and ends
+in i.
+
+Case 1: The node stays in cell i for all three steps.
+
+Path:
+
+i -> i -> i -> i
+
+The probability of this path is:
+
+p^3
+
+Case 2: The node makes two moves and stays for one step.
+
+The node must move from i to one of its six neighbors j and then return
+from j to i. The stay can occur in any of the three time-step positions:
+
+1. i -> i -> j -> i
+2. i -> j -> j -> i
+3. i -> j -> i -> i
+
+There are 6 choices for neighboring cell j and 3 possible positions for
+the stay. Therefore, there are:
+
+6 x 3 = 18
+
+paths of this type. Each path has probability:
+
+p q^2
+
+Therefore, the total probability contributed by this case is:
+
+18 p q^2
+
+Case 3: The node moves during all three steps.
+
+A valid path has the form:
+
+i -> j -> k -> i
+
+Cell j can be any one of the six neighbors of i. For each choice of j,
+there are two cells k that are neighbors of both i and j. Therefore,
+there are:
+
+6 x 2 = 12
+
+three-move paths that return to i. Each path has probability:
+
+q^3
+
+Therefore, the total probability contributed by this case is:
+
+12 q^3
+
+A path containing exactly one move cannot return to i, so it contributes
+zero probability.
+
+Combining all valid cases gives:
+
+P(X(t+3) = i | X(t) = i) = p^3 + 18 p q^2 + 12 q^3
+
+Substituting q = (1 - p)/6:
+
+P(X(t+3) = i | X(t) = i)
+= p^3 + 18p[(1-p)/6]^2 + 12[(1-p)/6]^3
+
+Therefore:
+
+P(X(t+3) = i | X(t) = i)
+= p^3 + p(1-p)^2/2 + (1-p)^3/18
+
+An equivalent expanded form is:
+
+P(X(t+3) = i | X(t) = i)
+= (26p^3 - 15p^2 + 6p + 1) / 18
