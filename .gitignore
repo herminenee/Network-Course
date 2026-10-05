@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+*.pcap
+*.pcapng
+build/
+cmake-cache/
